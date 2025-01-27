@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -8,6 +8,7 @@ import {
   Controls,
   useReactFlow,
   Background,
+  Panel
 } from '@xyflow/react';
  
 import '@xyflow/react/dist/style.css';
@@ -36,6 +37,16 @@ const DnDFlow = () => {
   const reactFlowWrapper = useRef(null);
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
+
+  const [rfInstance, setRfInstance] = useState(null);
+  const [text, setText] = useState(null);
+
+  const onSave = useCallback(() => {
+    if (rfInstance) {
+      const flow = rfInstance.toObject();
+      setText(JSON.stringify(flow.edges));
+    }
+  }, [rfInstance]);
  
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -89,15 +100,20 @@ const DnDFlow = () => {
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
+          onInit={setRfInstance}
           fitView
           style={{ backgroundColor: "#F7F9FB" }}
           nodeTypes={nodeTypes}
         >
           <Controls />
           <Background />
+          <Panel position="top-right">
+            <button onClick={onSave}>save</button>
+          </Panel>
         </ReactFlow>
       </div>
       <Sidebar />
+      <code>{text}</code>
     </div>
   );
 };
