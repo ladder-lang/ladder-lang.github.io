@@ -18,15 +18,16 @@ import Sidebar from './Sidebar';
 import { DnDProvider, useDnD } from './DnDContext';
 
 import ContactNode from './ContactNode';
+import CoilNode from './CoilNode';
  
 const initialNodes = [
   { id: '1', type: 'contact', position: { x: 100, y: 100 }, data: { label: '1' }},
   { id: '2', type: 'contact', position: { x: 300, y: 100 }, data: { label: '2' } },
-  { id: '3', type: 'contact', position: { x: 500, y: 100 }, data: { label: '3' } },
+  { id: '3', type: 'coil', position: { x: 500, y: 100 }, data: { label: '3' } },
 ];
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2', type: 'step'}];
 
-const nodeTypes = { contact: ContactNode };
+const nodeTypes = { contact: ContactNode, coil: CoilNode };
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -44,13 +45,16 @@ const DnDFlow = () => {
   const onSave = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      setText(JSON.stringify(flow.edges));
+      setText(JSON.stringify(flow));
     }
   }, [rfInstance]);
  
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
+    (params) => {
+      const edge = { ...params, type: 'step' };
+      setEdges((eds) => addEdge(edge, eds))
+    },
+    [setEdges],
   );
  
   const onDragOver = useCallback((event) => {
@@ -76,7 +80,7 @@ const DnDFlow = () => {
       });
       const newNode = {
         id: getId(),
-        type: 'contact',
+        type,
         position,
         data: { label: `${type} node` },
       };
@@ -104,6 +108,7 @@ const DnDFlow = () => {
           fitView
           style={{ backgroundColor: "#F7F9FB" }}
           nodeTypes={nodeTypes}
+          edgeTypes={'step'}
         >
           <Controls />
           <Background />

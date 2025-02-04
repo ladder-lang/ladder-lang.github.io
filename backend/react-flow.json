@@ -1,0 +1,151 @@
+{
+    "nodes": [
+        {
+            "id": "1",
+            "type": "contact",
+            "position": {
+                "x": 81.59937039566847,
+                "y": 100.20619248646395
+            },
+            "data": {
+                "label": "1"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "2",
+            "type": "contact",
+            "position": {
+                "x": 300,
+                "y": 100
+            },
+            "data": {
+                "label": "2"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            },
+            "selected": false
+        },
+        {
+            "id": "3",
+            "type": "contact",
+            "position": {
+                "x": 259.67346938775506,
+                "y": -7.02040816326533
+            },
+            "data": {
+                "label": "3"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "dndnode_0",
+            "type": "contact",
+            "position": {
+                "x": 427.78803898375673,
+                "y": -6.827909037900863
+            },
+            "data": {
+                "label": "input node"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            },
+            "selected": false,
+            "dragging": false
+        },
+        {
+            "id": "dndnode_1",
+            "type": "contact",
+            "position": {
+                "x": 422.2696802998751,
+                "y": 96.49926757184505
+            },
+            "data": {
+                "label": "input node"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            },
+            "selected": true,
+            "dragging": false
+        },
+        {
+            "id": "dndnode_2",
+            "type": "contact",
+            "position": {
+                "x": 660,
+                "y": 90
+            },
+            "data": {
+                "label": "default node"
+            },
+            "measured": {
+                "width": 60,
+                "height": 60
+            }
+        }
+    ],
+    "edges": [
+        {
+            "id": "e1-2",
+            "source": "1",
+            "target": "2",
+            "type": "step"
+        },
+        {
+            "source": "1",
+            "sourceHandle": "b",
+            "target": "3",
+            "targetHandle": "a",
+            "id": "xy-edge__1b-3a"
+        },
+        {
+            "source": "3",
+            "sourceHandle": "b",
+            "target": "dndnode_0",
+            "targetHandle": "a",
+            "id": "xy-edge__3b-dndnode_0a"
+        },
+        {
+            "source": "2",
+            "sourceHandle": "b",
+            "target": "dndnode_1",
+            "targetHandle": "a",
+            "id": "xy-edge__2b-dndnode_1a"
+        },
+        {
+            "source": "dndnode_0",
+            "sourceHandle": "b",
+            "target": "dndnode_2",
+            "targetHandle": "a",
+            "id": "xy-edge__dndnode_0b-dndnode_2a"
+        },
+        {
+            "source": "dndnode_1",
+            "sourceHandle": "b",
+            "target": "dndnode_2",
+            "targetHandle": "a",
+            "id": "xy-edge__dndnode_1b-dndnode_2a"
+        }
+    ],
+    "viewport": {
+        "x": -38.13103393030593,
+        "y": 91.21165390697632,
+        "zoom": 0.7675431026809805
+    }
+}
